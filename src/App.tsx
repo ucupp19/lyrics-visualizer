@@ -4,7 +4,7 @@ import MusicPlayer from './MusicPlayer';
 import LyricsBox from './LyricsBox';
 import LoadingSection from './LoadingSection';
 import ErrorSection from './ErrorSection';
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import ShinyText from './Shinytext';
 
 
@@ -204,22 +204,30 @@ function App() {
   // Calculate progress (0 to 1)
   const [progress, setProgress] = useState(0);
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
     const onTimeUpdate = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
       setCurrentTime(formatTime(audio.currentTime));
       setProgress(audio.duration ? audio.currentTime / audio.duration : 0);
       // Sync lyrics
       if (lyrics.length > 0) {
         let idx = 0;
+        const currentTime = audio?.currentTime;
         for (let i = 0; i < lyrics.length; i++) {
-          if (lyrics[i].startTime !== undefined && audio.currentTime >= lyrics[i].startTime) {
+          const startTime = lyrics[i].startTime;
+          if (
+            typeof currentTime === 'number' &&
+            typeof startTime === 'number' &&
+            currentTime >= startTime
+          ) {
             idx = i;
           }
         }
         setActiveIndex(idx);
       }
     };
+    const audio = audioRef.current;
+    if (!audio) return;
     audio.addEventListener('timeupdate', onTimeUpdate);
     return () => {
       audio.removeEventListener('timeupdate', onTimeUpdate);
