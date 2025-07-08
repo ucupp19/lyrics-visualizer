@@ -19,8 +19,6 @@ const AUDIO_API = 'http://localhost:5001/play';
 
 function App() {
   // State
-  const [showPlayer, setShowPlayer] = useState(false);
-  const [showLyrics, setShowLyrics] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -126,8 +124,6 @@ function App() {
   const handleUrlSubmit = async (url: string) => {
     setShowError(false);
     setShowLoading(true);
-    setShowPlayer(false);
-    setShowLyrics(false);
     try {
       let artist = '';
       let title = '';
@@ -167,8 +163,6 @@ function App() {
       setLyrics(lyricsData);
       console.log('Parsed lyrics:', lyricsData);
       setActiveIndex(0);
-      setShowPlayer(true);
-      setShowLyrics(true);
       setShowLoading(false);
       setIsPlaying(false);
       setErrorMessage('');
@@ -183,8 +177,6 @@ function App() {
   const handleManualSearch = async (artist: string, title: string) => {
     setShowError(false);
     setShowLoading(true);
-    setShowPlayer(false);
-    setShowLyrics(false);
     try {
       // Use audio API for unified info
       const audioData = await fetchAudio(`${artist} ${title}`);
@@ -199,8 +191,6 @@ function App() {
       setLyrics(lyricsData);
       console.log('Parsed lyrics:', lyricsData);
       setActiveIndex(0);
-      setShowPlayer(true);
-      setShowLyrics(true);
       setShowLoading(false);
       setIsPlaying(false);
       setErrorMessage('');
