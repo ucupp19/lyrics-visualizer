@@ -11,9 +11,6 @@ A modern web application that synchronizes lyrics with music playback, allowing 
 - **Error Handling**: Graceful error handling for unsupported audio sources
 - **Modern UI**: Beautiful, intuitive interface with smooth animations
 
-## 🚀 Live Demo
-
-[Add your live demo link here]
 
 ## 🛠️ Technology Stack
 
