@@ -14,8 +14,8 @@ interface LyricLine {
   endTime?: number;
 }
 
-const LYRICS_API = 'http://afrizz.my.id:5000/lyrics';
-const AUDIO_API = 'http://localhost:5001/play';
+const LYRICS_API = 'http://localhost:3000/lyrics';
+const AUDIO_API = 'http://localhost:3000/play';
 
 function App() {
   // State
@@ -284,6 +284,7 @@ function App() {
         background: '#222',
       }}
     >
+
       <div className="container" style={{ width: '100%', maxWidth: 900, minHeight: '100vh', margin: '0 auto', padding: '48px 32px', display: 'block' }}>
         <header className="header" style={{ textAlign: 'center' }}>
           <h1>
